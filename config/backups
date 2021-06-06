@@ -1,0 +1,32 @@
+package backups
+
+config generate generate
+	# custom firewall rules from LuCI config
+	list dirs "/etc/firewall.user"
+	## Some extra files and directories for inspiration:
+	#
+	# if you want to backup startup services
+	list dirs "/etc/rc.d"
+	#
+	# to backup root ssh config, authorized and private keys
+	list dirs "/root/.ssh"
+	#
+	# if you want to backup system users as well
+	#list dirs "/etc/passwd"
+	#list dirs "/etc/shadow"
+	#
+	# if you want to backup OpenVPN Foris plugin certificates
+	#list dirs "/etc/ssl/ca/openvpn"
+	#
+	# if you have some custom crontabs
+	#list dirs "/etc/cron.d/my_crontab"
+
+	list dirs "/etc/freeradius3"
+	list dirs "/etc/local"
+	list dirs "/etc/cron.d/local*"
+	list dirs "/etc/rc.local"
+	list dirs "/etc/config/hostapd1.vlan"
+	list dirs "/etc/hotplug.d/iface/30-local-mirror-traffic"
+	list dirs "/etc/hotplug.d/dhcp/50-local-mirror-traffic"
+	list dirs "/etc/suricata-pakon/"
+	list dirs "/etc/msmtprc"

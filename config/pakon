@@ -1,0 +1,25 @@
+config monitor 'monitor'
+	option notify_new_devices 0
+	list interface 'br-lan'
+	list interface 'br-guest_turris'
+
+config archive 'archive'
+	option keep 4w
+
+config archive_rule
+	option up_to 1d
+	option window 60
+	option size_threshold 4096
+
+config archive_rule
+	option up_to 3d
+	option window 900
+	option size_threshold 8192
+
+config archive_rule
+	option up_to 7d
+	option window 1800
+
+config archive_rule
+	option up_to 14d
+	option window 3600

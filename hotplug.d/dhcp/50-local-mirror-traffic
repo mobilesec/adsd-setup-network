@@ -1,0 +1,5 @@
+#!/bin/sh
+
+logger -t adsd-mirror "New DHCP assignment: $ACTION $IPADDR $MACADDR"
+
+ip link | egrep "wlan1\..*: <BROADCAST,MULTICAST,UP,LOWER_UP>" | cut -d: -f2 | while read dev; do ACTION=ifup DEVICE=$dev /etc/hotplug.d/iface/30-local-mirror-traffic; done

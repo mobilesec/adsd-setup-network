@@ -1,0 +1,14 @@
+#!/bin/sh
+
+logger -t adsd-mirror "$ACTION $DEVICE"
+
+if [ "$ACTION" = ifup ] && [ `echo "$DEVICE" | cut -d. -f1` = "wlan1" ]; then
+    vlan=`echo $DEVICE | cut -d. -f2`
+    logger -t adsd-mirror "Starting (hotplug) mirroring traffic from $DEVICE (vlan id $vlan)..."
+
+    tc qdisc add dev $DEVICE handle ffff: ingress
+    tc filter add dev $DEVICE parent ffff: protocol all u32 match u32 0 0 action vlan push id $vlan pipe action mirred egress mirror dev l2tpeth0 pipe action vlan pop
+    tc qdisc add dev $DEVICE handle 1: root htb
+    tc filter add dev $DEVICE parent 1: protocol all u32 match u32 0 0 action vlan push id $vlan pipe action mirred egress mirror dev l2tpeth0 pipe action vlan pop
+fi
+

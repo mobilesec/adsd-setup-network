@@ -1,0 +1,2 @@
+MAILTO="admin@lab.setup"
+29	10	*	*	*	root	/etc/local/check-connected-phones.sh | mstmp rm@ins.jku.at

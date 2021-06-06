@@ -1,0 +1,19 @@
+
+config turris 'turris'
+	option mode 'branch'
+	list pkglists 'datacollect'
+	list pkglists 'dev-detect'
+	list pkglists 'honeypot'
+	list pkglists 'luci-controls'
+	list pkglists 'netmetr'
+	list pkglists 'pakon'
+	list pkglists 'tor'
+	option branch 'hbs'
+
+config l10n 'l10n'
+	list langs 'de'
+
+config autorun 'autorun'
+	option enable '1'
+	option approvals '1'
+

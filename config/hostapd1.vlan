@@ -1,0 +1,5 @@
+*           wlan1.#	br-guest_turris
+#*	wlan1.#		
+#*	veth0.#		br-guest_turris
+#*	wlan1.#		br0
+#*	brveth0.#	br-guest_turris

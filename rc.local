@@ -1,0 +1,15 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+ip l2tp add tunnel tunnel_id 1 peer_tunnel_id 1 udp_sport 5000 udp_dport 5000 encap udp local 10.10.10.10 remote 20.20.20.20
+ip l2tp add session tunnel_id 1 session_id 1 peer_session_id 1
+ip link set l2tpeth0 up mtu 1428
+
+for vlan in `seq 100 160`; do 
+	tc qdisc add dev wlan1.$vlan handle ffff: ingress
+	tc filter add dev wlan1.$vlan parent ffff: protocol all u32 match u32 0 0 action vlan push id $vlan pipe action mirred egress mirror dev l2tpeth0 pipe action vlan pop
+	tc qdisc add dev wlan1.$vlan handle 1: root htb
+	tc filter add dev wlan1.$vlan parent 1: protocol all u32 match u32 0 0 action vlan push id $vlan pipe action mirred egress mirror dev l2tpeth0 pipe action vlan pop
+done
+
+exit 0
