@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Wed, 27 Oct 2021 20:50:52 GMT
+Content-Type: application/pem-certificate-chain
+Content-Length: 6692
+Connection: keep-alive
+Replay-Nonce: wkD66ryTrCMobPm7SfIAIK5yUXFr2HdEx8YX0MkhAzQ
+Cache-Control: max-age=-1
+Access-Control-Allow-Origin: *
+Link: <https://acme.zerossl.com/v2/DV90>;rel="index"
+Strict-Transport-Security: max-age=15552000
+
