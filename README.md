@@ -18,9 +18,12 @@ To make this reasonably usable, replace
 
 For using a proper certificate for Radius authentication
 ---
+Inspired by https://brainfood.xyz/post/20190518-letsencrypt-on-turris-omnia/
 * Call `opkg install acme` to get the necessary scripts
 * Make sure there is a publicly resolvable DNS name for your access point, with port 80 reachable from the WAN side (the firewall rule for the port on the router itself will be opened dynamically only while renewing)
 * Disable sentinel/minipot (the honeypot) from catching port 80
+* `mkdir mkdir -p /www/letsencrypt/.well-known/acme-challenge/`
+* `echo 'alias.url += ( "/.well-known/acme-challenge/" => "/www/letsencrypt/.well-known/acme-challenge/")' > /etc/lighttpd/conf.d/05-letsencrypt.conf`
 * Adapt `/etc/config/acme` with your hostname
 * Change `/etc/acme/cleanup-letsencrypt.sh` to use the proper filenames with your hostname
 * Execute `/etc/init.d/acme enable; /etc/init.d/acme start`
