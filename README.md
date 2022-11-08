@@ -15,3 +15,15 @@ To make this reasonably usable, replace
 * potentially `wan` configuration in `config/network` if DHCP is not used upstream
 * L2TP tunnel configuration for the `mirror` interface in `config/network` and `rc.local` to match the local and peer IP addresses for the specific setup
 * `MAILTO` in `cron.d/local-check-connected-wifi-devices` and local mail server in `msmtprc` to receive email about device connection stats
+
+For using a proper certificate for Radius authentication
+---
+* Make sure there is a publicly resolvable DNS name for your access point, with port 80 reachable from the WAN side (the firewall rule for the port on the router itself will be opened dynamically only while renewing)
+* Disable sentinel/minipot (the honeypot) from catching port 80
+* Adapt `/etc/config/acme` with your hostname
+* Change `/etc/acme/cleanup-letsencrypt.sh` to use the proper filenames with your hostname
+* Execute `/etc/init.d/acme enable; /etc/init.d/acme start`
+* `ln -s /etc/acme/<your-hostname>/ca.cer /etc/freeradius3/certs/ca.pem`
+
+If something goes wrong, manually starting `/usr/lib/acme/run-acme` should give some error messages.
+
