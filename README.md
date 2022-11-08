@@ -18,6 +18,7 @@ To make this reasonably usable, replace
 
 For using a proper certificate for Radius authentication
 ---
+* Call `opkg install acme` to get the necessary scripts
 * Make sure there is a publicly resolvable DNS name for your access point, with port 80 reachable from the WAN side (the firewall rule for the port on the router itself will be opened dynamically only while renewing)
 * Disable sentinel/minipot (the honeypot) from catching port 80
 * Adapt `/etc/config/acme` with your hostname
